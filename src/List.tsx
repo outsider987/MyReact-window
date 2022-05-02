@@ -61,7 +61,7 @@ const List = ({ height, rowheight, itemCount, Children }: Props) => {
     }, [maxValue]);
    
     return (
-        <div style={{ maxHeight: `${height}vh` }} id='List' className={classNames(` overflow-auto w-full relative`)}>
+        <div style={{ maxHeight: `${height}vh`,overflow:'auto' }} id='List' className={classNames(` overflow-auto w-full relative`)}>
             <div
                 className={`relative block  `}
                 style={{
