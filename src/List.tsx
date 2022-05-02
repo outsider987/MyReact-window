@@ -74,6 +74,7 @@ const List = ({ height, rowheight, itemCount, Children }: Props) => {
                         className={`tr absolute`}
                         style={{
                             top: `${(index + currentIndex.current) * rowheight}vh`,
+                            position:'absolute'
                         }}
                     >
                         <Children index={index + currentIndex.current}></Children>
