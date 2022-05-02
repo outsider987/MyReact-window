@@ -1,26 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import List from './List';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './index.css';
+import React, { PropsWithChildren, } from 'react';
+interface RowProps extends PropsWithChildren<unknown> {
+    index?:number
 }
 
-export default App;
+export default function App() {
+    const Row = (props?: RowProps) => {
+        return <div>Row {props !== undefined ? props.index : 1}</div>;
+    };
+    
+    return (
+        <div className='App'>
+            <div className='flex w-full'>
+                <List height={50} rowheight={5} itemCount={50} Children={Row}></List>
+            </div>
+        </div>
+    );
+}
