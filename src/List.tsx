@@ -61,10 +61,11 @@ const List = ({ height, rowheight, itemCount, Children }: Props) => {
     }, [maxValue]);
    
     return (
-        <div style={{ maxHeight: `${height}vh`,overflow:'auto' }} id='List' className={classNames(` overflow-auto w-full relative`)}>
+        <div style={{ maxHeight: `${height}vh`, overflow: 'auto' }} id='List' className={classNames(` overflow-auto w-full relative`)}>
             <div
-                className={`relative block  `}
+                className={`block  `}
                 style={{
+                    position: 'relative',
                     height: `${Rows?.length ? Rows?.length * rowheight : 2 * rowheight}vh`,
                 }}
             >
@@ -74,7 +75,7 @@ const List = ({ height, rowheight, itemCount, Children }: Props) => {
                         className={`tr absolute`}
                         style={{
                             top: `${(index + currentIndex.current) * rowheight}vh`,
-                            position:'absolute'
+                            position: 'absolute',
                         }}
                     >
                         <Children index={index + currentIndex.current}></Children>
