@@ -1,20 +1,21 @@
-import React, { useEffect, useState, useRef, ComponentType,Component,ElementType } from 'react';
+import classNames from 'classnames';
+import React, { useEffect, useState, useRef, ComponentType, Component, ElementType } from 'react';
 import shortid from 'shortid';
+
 
 interface Props {
     height: number;
     rowheight: number;
     itemCount: number;
     index?: number;
-    Children: ({ index}: ListChildComponentProps) => JSX.Element;
+    Children: ({ index }: ListChildComponentProps) => JSX.Element;
 }
 
 export interface ListChildComponentProps {
     index: number;
-
 }
 
-const List  = ({ height, rowheight, itemCount, Children }: Props) => {
+const List = ({ height, rowheight, itemCount, Children }: Props) => {
     const Rows = Array.from(Array(itemCount).keys());
     const currentIndex = useRef(0);
     let value2 = height / rowheight;
@@ -24,8 +25,7 @@ const List  = ({ height, rowheight, itemCount, Children }: Props) => {
     useEffect(() => {
         let rowHeight = 0;
         const elementArrary2 = Array.prototype.slice.call(document.getElementsByClassName('tr')) as HTMLDivElement[];
-         rowHeight = elementArrary2[0].clientHeight ;
-   
+        rowHeight = elementArrary2[0].clientHeight;
 
         const options = {
             root: document.getElementById('List'),
@@ -38,9 +38,8 @@ const List  = ({ height, rowheight, itemCount, Children }: Props) => {
                 if (entry.isIntersecting) {
                     const element = entry.target as HTMLDivElement;
                     const value = parseInt(element.style.top.split('hv')[0]);
-                  
+
                     if (value > height && value > currentIndex.current * rowheight) {
-                   
                         const reangeValue = value - height;
                         currentIndex.current = reangeValue / rowheight;
                         setMaxValue(value2 + currentIndex.current);
@@ -60,9 +59,9 @@ const List  = ({ height, rowheight, itemCount, Children }: Props) => {
             watcher.observe(image);
         }
     }, [maxValue]);
-
+   
     return (
-        <div id='List' className={`max-h-[50vh] overflow-auto w-full relative`}>
+        <div style={{ maxHeight: `${height}vh` }} id='List' className={classNames(` overflow-auto w-full relative`)}>
             <div
                 className={`relative block  `}
                 style={{
